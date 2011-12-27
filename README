@@ -1,2 +1,6 @@
 lockf:
  FreeBSD's lockf
+ NetBSD already has shlock
+
+free:
+ free for NetBSD
