@@ -1,2 +1,4 @@
 a simple sar for NetBSD
 stores data in sqlite
+
+sar is System Activity Reporter
