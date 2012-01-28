@@ -1,0 +1,2 @@
+fork N children who fork (system/exec) X in a loop
+watchdog ensures N children are running
