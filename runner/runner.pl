@@ -44,14 +44,19 @@ while (scalar keys(%kids) < $th)
     open(PIDF, ">$pidf");
     print PIDF "$$";
     close PIDF;
-    while (1)
-    {
+
+    $SIG{CHLD} = sub {
       my $k = waitpid(-1,WNOHANG);
       if ($k > 0 and exists $kids{$k})
       {
-        #print "parent: $k went away\n";
+        print "parent: $k went away\n";
         delete $kids{$k};
       }
+    };
+
+    while (1)
+    {
+      sleep 1;
       if (scalar keys(%kids) < $th)
       {
         next FORKIT; #I love goto
