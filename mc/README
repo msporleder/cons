@@ -1,0 +1,4 @@
+This is a simple tool for testing if multicast is working on your network.
+
+gcc -o mc mc.c
+./mc 230.0.0.10 9999 message1
