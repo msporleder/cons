@@ -2,7 +2,6 @@
 use JSON;
 use Data::Dumper;
 
-my $gdb = "/var/tmp/gnatsdb/home/gnats/gnatsdb";
 my $txt;
 my %p;
 my $infield = "Header";
@@ -25,10 +24,7 @@ while(<>)
 }
 
 #print Dumper \%p;
-#my %{$p{Number}} => %p;
 push(@j, \%p);
 my $json = to_json( \@j, {pretty => 1} );
 #my $cmd = "curl -vvv localhost:8983/solr/update/json -H 'Content-type:application/json' -d \'$json\'";
-#print "$cmd\n";
-#qx#"$cmd"#;
 print "$json";
