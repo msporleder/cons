@@ -1,1 +1,3 @@
 free for NetBSD
+
+also added a load average getter

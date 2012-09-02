@@ -20,14 +20,14 @@ main(int argc, char *argv[])
 void
 getload(long flag)
 {
+/*
   struct loadavg load;
   size_t load_s;
   load_s = sizeof(load);
   if ( sysctlbyname("vm.loadavg", &load, &load_s, NULL, 0) == -1 )
     exit -1;
-/*
+*/
   double load[3];
   getloadavg(load, flag);
-  printf("%.3f\t%.3f\t%.3f\n", load[0], load[1], load[2]);
-*/
+  printf("%.2f\t%.2f\t%.2f\n", load[0], load[1], load[2]);
 }
