@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdint.h>
 #include <sys/param.h>
 #include <sys/sysctl.h>
 #include <uvm/uvm_param.h>
@@ -43,10 +44,10 @@ getmem(long flag)
   uvmstat_s = sizeof(uvmstat);
   sysctlbyname("vm.uvmexp2", &uvmstat, &uvmstat_s, NULL, 0);
   printf("\ttotal\t\tused\t\tfree\n");
-  printf("Mem:\t%8d\t%8d\t%8d\n", uvmstat.npages*uvmstat.pagesize/flag,
-   (uvmstat.npages*uvmstat.pagesize-uvmstat.free*uvmstat.pagesize)/flag,
-   uvmstat.free*uvmstat.pagesize/flag);
-  printf("Swap:\t%8d\t%8d\t%8d\n", uvmstat.swpages*uvmstat.pagesize/flag,
-   uvmstat.swpginuse*uvmstat.pagesize/flag,
-   (uvmstat.swpages*uvmstat.pagesize-uvmstat.swpginuse*uvmstat.pagesize)/flag); 
+  printf("Mem:\t%8d\t%8d\t%8d\n", (uint64_t)uvmstat.npages*uvmstat.pagesize/flag,
+   ((uint64_t)uvmstat.npages*uvmstat.pagesize-(uint64_t)uvmstat.free*uvmstat.pagesize)/flag,
+   (uint64_t)uvmstat.free*uvmstat.pagesize/flag);
+  printf("Swap:\t%8d\t%8d\t%8d\n", (uint64_t)uvmstat.swpages*uvmstat.pagesize/flag,
+   (uint64_t)uvmstat.swpginuse*uvmstat.pagesize/flag,
+   ((uint64_t)uvmstat.swpages*uvmstat.pagesize-(uint64_t)uvmstat.swpginuse*uvmstat.pagesize)/flag); 
 }
